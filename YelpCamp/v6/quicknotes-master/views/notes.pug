@@ -1,0 +1,108 @@
+doctype html
+//if lt IE 7
+  html.no-js.lt-ie9.lt-ie8.lt-ie7  
+//if IE 7
+  html.no-js.lt-ie9.lt-ie8  
+//if IE 8
+  html.no-js.lt-ie9  
+// [if gt IE 8] <!
+html.no-js
+    // <![endif]
+    head
+        title Quick Notes
+        meta(charset='utf-8')
+        meta(name='description', content='')
+        meta(name='viewport', content='width=device-width')
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700')
+        link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:400,300,700')
+        link(rel='stylesheet', href='./css/font-awesome.min.css')
+        link(rel='stylesheet', href='./js/libs/css/ui-lightness/jquery-ui-1.9.2.custom.min.css')
+        link(rel='stylesheet', href='./css/bootstrap.min.css')
+        link(rel='stylesheet', href='./css/target-admin.css')
+        link(rel='stylesheet', href='./css/custom.css')
+
+    body
+        #newNote.modal.modal-styled.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                        h3.modal-title New Note
+                    .modal-body
+                        input#newnotetitle.form-control(type='text', name='title', placeholder='Title', tabindex='1', required='required')
+                        br
+                        textarea#newnotetext.form-control(name='text',style="margin: 0px; height: 197px; line-height: 20px; " placeholder='Note', tabindex='1', required='required')
+                    .modal-footer
+                        button.btn.btn-tertiary(type='button', data-dismiss='modal') Close
+                        button#savenewnote.btn.btn-primary(type='button', data-dismiss='modal') Save
+        #updateNote.modal.modal-styled.fade
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        button.close(type='button', data-dismiss='modal', aria-hidden='true') &times;
+                        h3.modal-title New Note
+                    .modal-body
+                        input#updatenotetitle.form-control(type='text', name='title', placeholder='Title', tabindex='1', required='required')
+                        br
+                        textarea#updatenotetext.form-control(name='text',style="margin: 0px; height: 197px; line-height: 20px; " placeholder='Note', tabindex='1', required='required')
+                    .modal-footer
+                        button.btn.btn-tertiary(type='button', data-dismiss='modal') Close
+                        button#saveupdatenote.btn.btn-primary(type='button', data-dismiss='modal') Update
+    .mainbar
+        .container
+            button.btn.mainbar-toggle(type='button', data-toggle='collapse', data-target='.mainbar-collapse')
+                i.fa.fa-bars
+            .mainbar-collapse.collapse
+                ul.nav.navbar-nav.mainbar-nav
+                    li
+                        a(href='/notes')
+                            i.fa.fa-files-o
+                            |  Notes
+                    li.dropdown
+                        a.dropdown-toggle(href='javascript:;', data-toggle='dropdown', data-hover='dropdown')
+                            i.fa.fa-user
+                            |  #{name}
+                            span.caret
+                        ul.dropdown-menu
+                            li
+                                a(href='/logout')
+                                    i.fa.fa-user-align-center
+                                    |  Logout
+    .container
+        .content
+            #notes.content-container
+                != "<div class='row'>"
+                .col-md-4
+                    a(href='javascript:;')
+                        .portlet(data-toggle='modal' data-target='#newNote')
+                            .portlet-header
+                                h3  Add a new note
+                            .portlet-content
+                                font(size='10')
+                                    center
+                                        i.fa.fa-plus.fa-3
+                each note in list
+                    .col-md-4
+                        .portlet
+                            .portlet-header
+                                font(style='word-wrap: break-word;font-size:20px;') #{note.title}
+                                ul.portlet-tools.pull-right
+                                    li
+                                        a.btn.btn-sm.btn-icon(onclick='deletenote(\'' + note._id + '\');',id=note._id)
+                                            i.fa.fa-times
+                            .portlet-content
+                                p(style='word-wrap: break-word;')
+                                    | #{note.text}
+
+    footer.footer
+        .container
+            .row
+                .col-sm-3
+                    p &copy; Anurag Dubey
+    script(src='./js/libs/jquery-1.10.1.min.js')
+    script(src='./js/libs/jquery-ui-1.9.2.custom.min.js')
+    script(src='./js/libs/bootstrap.min.js')
+    //if lt IE 9
+      script(src='./js/libs/excanvas.compiled.js')
+    script(src='./js/target-admin.js')
+    script(src='./js/main.js')

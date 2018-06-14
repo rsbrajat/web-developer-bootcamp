@@ -1,0 +1,66 @@
+doctype html
+//if lt IE 7
+  html.no-js.lt-ie9.lt-ie8.lt-ie7  
+//if IE 7
+  html.no-js.lt-ie9.lt-ie8  
+//if IE 8
+  html.no-js.lt-ie9  
+// [if gt IE 8] <!
+html.no-js
+  // <![endif]
+  head
+    title Create Your Account
+    meta(charset='utf-8')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:400,300,700')
+    link(rel='stylesheet', href='./css/font-awesome.min.css')
+    link(rel='stylesheet', href='./js/libs/css/ui-lightness/jquery-ui-1.9.2.custom.min.css')
+    link(rel='stylesheet', href='./css/bootstrap.min.css')
+    link(rel='stylesheet', href='./css/target-admin.css')
+    link(rel='stylesheet', href='./css/custom.css')
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js')
+  body.account-bg
+    .account-wrapper
+      .account-body
+        h3.account-body-title Signup Now
+        h5.account-body-subtitle It takes 10 seconds. Start saving your notes.
+        if msg
+          h4
+            if error
+                font(color='red') #{msg}
+            else
+                font(color='green') #{msg}
+        form.form.account-form(method='POST', action='/register')
+          .form-group
+            label.placeholder-hidden(for='signup-fullname') Your Name
+            input#signup-fullname.form-control(type='text',name='name', placeholder='Your Name', tabindex='2' required='required')
+          .form-group
+            label.placeholder-hidden(for='signup-username') Username
+            input#signup-username.form-control(type='text',name='username', placeholder='Username', tabindex='3' required='required')
+          .form-group
+            label.placeholder-hidden(for='login-password') Password
+            input#login-password.form-control(type='password',name='password', placeholder='Password', tabindex='4' required='required')
+          .form-group
+            button.btn.btn-secondary.btn-block.btn-lg(type='submit', tabindex='6')
+              | Create My Account &nbsp;
+              i.fa.fa-play-circle
+      .account-footer
+        p
+          | Already have an account? &nbsp;
+          a(href='/login') Login to your Account!
+    if(mobile)
+      .footer.navbar-fixed-bottom
+          center
+            a(href='http://quicknotes-cloudnotes.rhcloud.com/app.apk')
+                img(src='/img/banner.png',height='40%',width='40%')
+    script(src='./js/libs/jquery-1.10.1.min.js')
+    script(src='./js/libs/jquery-ui-1.9.2.custom.min.js')
+    script(src='./js/libs/bootstrap.min.js')
+    //if lt IE 9
+      script(src='./js/libs/excanvas.compiled.js')
+    script(src='./js/target-admin.js')
+    script(src='./js/target-account.js')

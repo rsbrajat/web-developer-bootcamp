@@ -1,0 +1,18 @@
+<% include partials/header %> 
+<!--we didnot write header.ejs as it is already looking for the ejs, as we coded it in app.js-->
+<h1>You fall in love with: <%= thingVar.toUpperCase() %></h1>
+<!--whatever goes inside those brackets, is treated as javaScript-->
+<!--this javaScript comes in the form of javaScript objects from the app.js or any other root file-->
+
+<% if(thingVar.toLowerCase() === "rusty"){ %>
+    <p>Rusty is the best</p>
+<% } else{ %>
+        <p>Moron, badass!!</p>
+<% } %>
+<p>P.S. this is the love.ejs file</p>
+
+<% include partials/footer %>
+
+<!--<%= %> when we want to add something to the html-->
+<!--<% %>   when we want to have some sort of logic, like if else, or loops-->
+<!--<%- %>-->
